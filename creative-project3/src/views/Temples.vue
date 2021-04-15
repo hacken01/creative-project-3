@@ -1,14 +1,18 @@
 <template>
 <div>
+<p class = "Header"> Temples with not available image <strong>are available for sale.</strong> It is just the photo not available yet! </p>
   <div class="wrapper">
-
-   <p class = "Header"> Clearance!!! <br> Take advantage of these awesome products! </p>
+    <div class="search">
+      <form class="pure-form">
+        <i class="fas fa-search"></i><input v-model="searchText" />
+      </form>
+    </div>
   </div>
-  <ProductList :discounted="temples" />
+  <ProductList :products="products" />
  
   <div class="footer-repository">
     <p>Git Repository:
-      click <a href="https://github.com/hacken01/creative-project-3.git">here</a> to
+      click <a href="https://github.com/BYU-CS-260-Winter-2021/lab-3b-grocery-store-hacken01.git">here</a> to
       access
       the repository </p>
   </div>
@@ -16,9 +20,9 @@
 </template>
 
 <script>
-import ProductList from "../components/clearenceList.vue"
+import ProductList from "../components/ProductList.vue"
 export default {
-  name: 'Home',
+  name: 'Temples',
   components: {
     ProductList
   },
@@ -28,8 +32,8 @@ export default {
     }
   },
   computed: {
-    temples() {
-      return this.$root.$data.discounted.filter(product => product.name.toLowerCase().search(this.searchText.toLowerCase()) >= 0);
+    products() {
+      return this.$root.$data.products.filter(product => product.name.toLowerCase().search(this.searchText.toLowerCase()) >= 0);
     },
   },
 }
@@ -44,7 +48,7 @@ export default {
 .Header{
   margin:0px;
   text-align:center;
-  font-size:50px;
+  font-size:20px;
 }
 .search {
   border: 1px solid #ccc;
